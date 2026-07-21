@@ -1,0 +1,77 @@
+{
+  "name": "qce-ai-backup",
+  "version": "0.1.0",
+  "description": "Windows desktop app for automatic QQ group-chat backup and AI weekly summaries via QCE",
+  "keywords": [
+    "qce",
+    "qq",
+    "chat-backup",
+    "ai-summary",
+    "electron"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/az7139/qce-ai-backup.git"
+  },
+  "homepage": "https://github.com/az7139/qce-ai-backup#readme",
+  "bugs": {
+    "url": "https://github.com/az7139/qce-ai-backup/issues"
+  },
+  "main": "out/main/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "tsc --noEmit && electron-vite build",
+    "preview": "electron-vite preview",
+    "dist": "npm run build && electron-builder --dir"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/xterm": "^6.0.0",
+    "axios": "latest",
+    "dayjs": "latest",
+    "electron-store": "latest",
+    "gray-matter": "latest",
+    "tree-kill": "latest",
+    "uuid": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "electron": "latest",
+    "electron-builder": "latest",
+    "electron-vite": "^5.0.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest",
+    "vite": "^7.3.6"
+  },
+  "build": {
+    "appId": "com.qce.ai-backup",
+    "productName": "QCE AI Backup",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "assets",
+        "to": "assets",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": "nsis"
+    }
+  }
+}

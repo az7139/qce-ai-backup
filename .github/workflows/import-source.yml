@@ -13,12 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Import source archive
-        if: ${{ hashFiles('qce-ai-backup-source.zip') != '' }}
+        if: ${{ hashFiles('.import/source.part06') != '' }}
         shell: bash
         run: |
           set -euo pipefail
-          unzip -o qce-ai-backup-source.zip
-          rm -f qce-ai-backup-source.zip .github/workflows/import-source.yml
+          cat .import/source.part* | base64 --decode > /tmp/qce-ai-backup-source.zip
+          unzip -o /tmp/qce-ai-backup-source.zip
+          rm -rf .import .github/workflows/import-source.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
